@@ -1,0 +1,8 @@
+// Imports from src directory
+@import "variables";
+@import "typography";
+
+// Imports from module folders (Paths are included with Grunt task)
+@import "hero";
+@import "carousel";
+@import "text-columns";

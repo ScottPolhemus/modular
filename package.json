@@ -1,0 +1,18 @@
+{
+  "name": "modular",
+  "version": "0.0.0",
+  "description": "A starter theme for creating flexible modular WordPress sites using Advanced Custom Fields",
+  "author": "Scott Polhemus <scott@polhem.us>",
+  "devDependencies": {
+    "glob": "^5.0.3",
+    "grunt": "^0.4.5",
+    "grunt-autoprefixer": "^2.2.0",
+    "grunt-browserify": "^3.5.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-sass": "^0.18.1",
+    "load-grunt-tasks": "^3.1.0"
+  },
+  "dependencies": {
+    "flickity": "^1.0.0"
+  }
+}
