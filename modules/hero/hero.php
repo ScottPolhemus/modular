@@ -8,7 +8,6 @@ $content = get_sub_field('content');
 <section class="hero" style="<?php echo $bg_style; ?>">
   <?php
   if($content) {
-    echo apply_filters( 'the_content', $content );
-  }
-  ?>
+    echo apply_filters('the_content', $content);
+  } ?>
 </section>

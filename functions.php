@@ -17,13 +17,6 @@ add_action( 'wp_enqueue_scripts', function() {
     $theme_ver
   );
 
-  wp_enqueue_script( 'modernizr',
-    get_template_directory_uri().'/assets/scripts/vendor/modernizr.min.js',
-    array(),
-    $theme_ver,
-    false
-  );
-
   wp_enqueue_script( 'main',
     get_template_directory_uri().'/assets/scripts/main.js',
     array( 'jquery' ),
