@@ -7,7 +7,7 @@ Requires ACF v5 (or v4 with the flexible content and repeater field add-ons)
 ## Features
 
 - Flexible page layouts using ACF's flexible content field
-- Grunt workflow and opinionated file structure for developing highly modular themes
+- Gulp workflow and opinionated file structure for developing highly modular themes
 
 ## How to Use
 
@@ -17,7 +17,7 @@ Each module has a PHP template plus an optional SCSS stylesheet partial and/or J
 
 If you're using ACF 5.0 or newer you can use the sync feature to get started quickly with the included Page Modules flexible content field, which has layouts for the starter modules. Make sure you set the permissions on the `acf-json` folder to allow ACF to save changes to the theme file.
 
-Grunt is used to compile CSS from SCSS (as well as add vendor prefixes with Autoprefixer) and to package modular JavaScript code using Browserify. If you have Node and Grunt installed, you can run `npm install` to pull the project dependencies, then `grunt build` or `grunt dev` to run the compile tasks for production or development respectively. The `dev` task includes a `watch` setup for updating assets as you save changes and triggering livereload in the browser.
+Gulp is used to compile CSS from SCSS (as well as add vendor prefixes with Autoprefixer) and to package modular JavaScript code using Browserify. If you have Node and Gulp installed, you can run `npm install` to pull the project dependencies, then `gulp build` or `gulp dev` to run the compile tasks for production or development respectively. The `dev` task includes a `watch` setup for updating assets as you save changes and triggering livereload in the browser.
 
 ## How it Works
 
@@ -31,10 +31,10 @@ The name of the module folder and template file should precisely match the name 
 
 ### SCSS
 
-The main SCSS stylesheets are located in `styles/src/`. There is a `main.scss` file which includes global partials as well as any module styles. For module-specific styles, you can create a stylesheet in the module folder and `@import` it using just the module name. The Grunt SASS task config (`tasks/options/sass.js`) includes a function to add all of the module directories to SASS's import paths automatically. It's also configured to add source maps when running from the `grunt dev` task.
+The main SCSS stylesheets are located in `styles/src/`. There is a `main.scss` file which includes global partials as well as any module styles. For module-specific styles, you can create a stylesheet in the module folder and `@import` it using just the module name. The Gulp SASS task config (`tasks/sass.js`) includes a function to add all of the module directories to SASS's import paths automatically. It's also configured to add source maps when running from the `gulp dev` task.
 
 ### JS
 
 The main script is located at `scripts/src/main.js`. The starter script includes a single function called on load, which checks the page for modules with a `data-module-name` attribute. This attribute is used in the template to indicate if a module includes an accompanying JS file, and should be set to the same name as the module folder and script file.
 
-For each JS-enabled module, the script is included using Browserify (which is configured to alias the module folders using Grunt in `tasks/options/browserify.js`). Module scripts are expected to export a function (using CommonJS syntax) which takes the module's DOM element as its first parameter. An example of this can be seen in the `carousel` starter module, which includes a script to initialize the "Flickity" slider plugin on the calling element.
+For each JS-enabled module, the script is included using Browserify (which is configured to expose the module scripts using Gulp in `tasks/browserify.js`). Module scripts are expected to export a function (using CommonJS syntax) which takes the module's DOM element as its first parameter. An example of this can be seen in the `carousel` starter module, which includes a script to initialize the "Flickity" slider plugin on the calling element.

@@ -7,8 +7,8 @@ require('./tasks/browserify');
 // Run 'gulp build' to compile once
 gulp.task('build', ['sass', 'browserify']);
 
-// Run 'gulp' for live-reloading
-gulp.task('default', ['sass', 'watchify'], function() {
+// Run 'gulp dev' for live-reloading
+gulp.task('dev', ['sass', 'watchify'], function() {
   livereload.listen();
 
   gulp.watch(['./**/*.scss'], ['sass']);
@@ -17,3 +17,5 @@ gulp.task('default', ['sass', 'watchify'], function() {
     livereload.changed(event.path);
   });
 });
+
+gulp.task('default', ['dev']);
