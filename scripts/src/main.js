@@ -3,11 +3,11 @@ window.onload = function() {
 }
 
 function ModularPage(doc) {
-  var modules = doc.querySelectorAll('[data-module-name]');
+  var modules = doc.querySelectorAll('[data-module]');
 
   for (var i = 0; i < modules.length; i++) {
     var el = modules[i];
-    var name = el.getAttribute('data-module-name');
+    var name = el.getAttribute('data-module');
 
     try {
       // Require module script (aliased with Grunt task)

@@ -35,6 +35,6 @@ The main SCSS stylesheets are located in `styles/src/`. There is a `main.scss` f
 
 ### JS
 
-The main script is located at `scripts/src/main.js`. The starter script includes a single function called on load, which checks the page for modules with a `data-module-name` attribute. This attribute is used in the template to indicate if a module includes an accompanying JS file, and should be set to the same name as the module folder and script file.
+The main script is located at `scripts/src/main.js`. The starter script includes a single function called on load, which checks the page for modules with a `data-module` attribute. This attribute is used in the template to indicate if a module includes an accompanying JS file, and should be set to the same name as the module folder and script file.
 
 For each JS-enabled module, the script is included using Browserify (which is configured to expose the module scripts using Gulp in `tasks/browserify.js`). Module scripts are expected to export a function (using CommonJS syntax) which takes the module's DOM element as its first parameter. An example of this can be seen in the `carousel` starter module, which includes a script to initialize the "Flickity" slider plugin on the calling element.
