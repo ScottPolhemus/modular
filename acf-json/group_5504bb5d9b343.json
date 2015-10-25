@@ -6,7 +6,6 @@
             "key": "field_5504bb62a6c8f",
             "label": "Modules",
             "name": "modules",
-            "prefix": "",
             "type": "flexible_content",
             "instructions": "",
             "required": 0,
@@ -30,7 +29,6 @@
                             "key": "field_5504bb7ea6c90",
                             "label": "Background Image",
                             "name": "background_image",
-                            "prefix": "",
                             "type": "image",
                             "instructions": "",
                             "required": 0,
@@ -55,7 +53,6 @@
                             "key": "field_5504bb87a6c91",
                             "label": "Content",
                             "name": "content",
-                            "prefix": "",
                             "type": "wysiwyg",
                             "instructions": "",
                             "required": 0,
@@ -84,7 +81,6 @@
                             "key": "field_5504bbfca6c96",
                             "label": "Slides",
                             "name": "slides",
-                            "prefix": "",
                             "type": "repeater",
                             "instructions": "",
                             "required": 0,
@@ -103,7 +99,6 @@
                                     "key": "field_5504bc0da6c97",
                                     "label": "Content",
                                     "name": "content",
-                                    "prefix": "",
                                     "type": "wysiwyg",
                                     "instructions": "",
                                     "required": 0,
@@ -134,7 +129,6 @@
                             "key": "field_5504d16b446b8",
                             "label": "Columns",
                             "name": "columns",
-                            "prefix": "",
                             "type": "repeater",
                             "instructions": "",
                             "required": 0,
@@ -153,7 +147,6 @@
                                     "key": "field_5504d183446b9",
                                     "label": "Content",
                                     "name": "content",
-                                    "prefix": "",
                                     "type": "wysiwyg",
                                     "instructions": "",
                                     "required": 0,
@@ -169,6 +162,70 @@
                                     "media_upload": 1
                                 }
                             ]
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                {
+                    "key": "55e11c6fdb6bd",
+                    "name": "post",
+                    "label": "Post",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_55e11d12db6c0",
+                            "label": "Post",
+                            "name": "module_post",
+                            "type": "post_object",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "post_type": [
+                                "post"
+                            ],
+                            "taxonomy": [],
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "return_format": "object",
+                            "ui": 1
+                        },
+                        {
+                            "key": "field_55e11ca9db6bf",
+                            "label": "Header",
+                            "name": "show_post_header",
+                            "type": "true_false",
+                            "instructions": "Show the header, including title and post date.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "Show post header",
+                            "default_value": 0
+                        },
+                        {
+                            "key": "field_55e11c87db6be",
+                            "label": "Content Length",
+                            "name": "show_full_content",
+                            "type": "true_false",
+                            "instructions": "Display the full text instead of an excerpt.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "Show full message",
+                            "default_value": 0
                         }
                     ],
                     "min": "",
@@ -194,5 +251,7 @@
     "hide_on_screen": [
         "the_content"
     ],
-    "modified": 1426380100
+    "active": 1,
+    "description": "",
+    "modified": 1445816921
 }

@@ -16,9 +16,7 @@
 
     } else {
 
-      // Standard post content
-      the_title('<h1>', '</h1>');
-      the_content();
+      the_module('post');
 
     }
 
