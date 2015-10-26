@@ -13,17 +13,17 @@
     "gulp-postcss": "^6.0.1",
     "gulp-sass": "^2.0.4",
     "gulp-sourcemaps": "^1.6.0",
-    "gulp-util": "^3.0.6",
+    "gulp-util": "^3.0.7",
     "lodash": "^3.10.1",
     "merge-stream": "^1.0.0",
     "minifyify": "^7.1.0",
     "pretty-hrtime": "^1.0.1",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
-    "watchify": "^3.4.0"
+    "watchify": "^3.5.0"
   },
   "dependencies": {
-    "flickity": "^1.0.0"
+    "flickity": "^1.1.1"
   },
   "browserify-shim": {
     "jquery": "global:jQuery"

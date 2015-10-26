@@ -9,5 +9,6 @@ $content = get_sub_field('content');
   <?php
   if($content) {
     echo apply_filters('the_content', $content);
-  } ?>
+  }
+  ?>
 </section>
