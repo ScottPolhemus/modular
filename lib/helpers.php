@@ -5,7 +5,6 @@ function the_module($module_name = '') {
     return false;
   }
 
-  // Use "locate_template()" instead of "get_template_part()" to retain scope
   locate_template( "/modules/$module_name/$module_name.php", true, false );
 }
 
@@ -31,7 +30,7 @@ function the_modules_loop($modules_field = 'modules') {
 
     // Render module template based on the row layout's name
     $module_name = str_replace('_', '-', get_row_layout());
-    locate_template( "/modules/$module_name/$module_name.php", true );
+    the_module($module_name);
 
   }
 }
