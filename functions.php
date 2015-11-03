@@ -14,7 +14,7 @@ add_action( 'wp_enqueue_scripts', function() {
   $theme_ver = $theme->version;
 
    wp_enqueue_style( 'main',
-    get_template_directory_uri().'/styles/main.css',
+    get_template_directory_uri().'/styles/main.min.css',
     array(),
     $theme_ver
   );
