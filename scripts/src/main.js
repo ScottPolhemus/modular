@@ -1,24 +1,5 @@
+var PageModules = require('./lib/page-modules.js');
+
 window.onload = function() {
-  new ModularPage(document);
-}
-
-function ModularPage(doc) {
-  var modules = doc.querySelectorAll('[data-module]');
-
-  for (var i = 0; i < modules.length; i++) {
-    var el = modules[i];
-    var name = el.getAttribute('data-module');
-
-    try {
-      // Require module script (aliased with Grunt task)
-      var Module = require('modules/'+name);
-    } catch(e) {
-      var Module = false;
-    }
-
-    if(Module) {
-      // Initialize the module
-      new Module(el);
-    }
-  }
+  PageModules();
 }

@@ -20,7 +20,7 @@ add_action( 'wp_enqueue_scripts', function() {
   );
 
   wp_enqueue_script( 'main',
-    get_template_directory_uri().'/scripts/main.js',
+    get_template_directory_uri().'/scripts/main.min.js',
     array( 'jquery' ),
     $theme_ver,
     true
