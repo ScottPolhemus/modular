@@ -16,8 +16,8 @@ gulp.task('browserify', function(callback) {
   return browserifyTask(false, callback);
 });
 
-gulp.task('watchify', function(callback) {
-  return browserifyTask(true, callback);
+gulp.task('watchify', function() {
+  return browserifyTask(true);
 });
 
 function browserifyTask(watch, cb) {
@@ -42,9 +42,9 @@ function browserifyTask(watch, cb) {
     var bundle = b.bundle()
       .on('error', function (err) { console.error(err.message); })
       .on('end', function() {
-        if(watch) {
-          bundleLogger.end('main.min.js');
-        } else {
+        bundleLogger.end('main.min.js');
+
+        if(typeof cb !== 'undefined') {
           cb();
         }
       })
