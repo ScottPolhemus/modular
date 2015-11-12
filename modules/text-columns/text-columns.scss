@@ -1,10 +1,12 @@
 section.text-columns {
-  display: table;
-  width: 100%;
-  table-layout: fixed;
+  @media (min-width: $break-mobile-min) {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
 
-  > .column {
-    display: table-cell;
-    vertical-align: top;
+    > .column {
+      display: table-cell;
+      vertical-align: top;
+    }
   }
 }
