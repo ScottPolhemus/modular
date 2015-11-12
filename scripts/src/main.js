@@ -1,4 +1,4 @@
-var PageModules = require('./lib/page-modules.js');
+var PageModules = require('./lib/page-modules');
 
 window.onload = function() {
   PageModules();

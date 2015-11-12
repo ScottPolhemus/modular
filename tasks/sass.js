@@ -6,25 +6,32 @@ var postcss = require('gulp-postcss');
 var autoprefixer = require('autoprefixer');
 var glob = require('glob');
 
-var sassConfig = {
-  outputStyle: 'compressed',
-  importer: importModules
-};
-
+/** Defines the "sass" task for Gulp. */
 gulp.task('sass', function() {
+  var sassOpts = {
+    outputStyle: 'compressed',
+    importer: moduleStylesImporter
+  };
+
   return gulp.src('./styles/src/*.scss')
     .pipe(sourcemaps.init())
-    .pipe(sass(sassConfig).on('error', sass.logError))
+    .pipe(sass(sassOpts).on('error', sass.logError))
     .pipe(postcss([autoprefixer()]))
     .pipe(rename({
       suffix: '.min'
     }))
-    .pipe(sourcemaps.write('./'))
+    .pipe(sourcemaps.write('./', {
+      sourceRoot: './src/',
+      includeContent: false
+    }))
     .pipe(gulp.dest('./styles'));
 });
 
-// Expose module partials to SASS as "modules/[name]".
-function importModules(url, prev) {
+/** 
+* Custom importer for node-sass.
+* Makes module partials available to import as "modules/[name]".
+*/
+function moduleStylesImporter(url, prev) {
   if(url.indexOf('modules/') === 0) {
     var files = glob.sync('./'+url+'/*.scss');
 

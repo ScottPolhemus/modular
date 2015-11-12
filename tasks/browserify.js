@@ -6,36 +6,49 @@ var fs = require('fs');
 var path = require('path');
 var glob = require('glob');
 
-var bundleOpts = {
-  entries: './scripts/src/main.js',
-  transform: [shim],
-  debug: true
-};
-
+/** Defines the "browserify" task for Gulp. */
 gulp.task('browserify', function(callback) {
   return browserifyTask(false, callback);
 });
 
-gulp.task('watchify', function() {
-  return browserifyTask(true);
+/** Defines the "watchify" task for Gulp. */
+gulp.task('watchify', function(callback) {
+  return browserifyTask(true, callback);
 });
 
-function browserifyTask(watch, cb) {
+/** 
+ * Runs the Browserify or Watchify bundler.
+ * @param {boolean} dev - "True" to configure the task for development.
+ * @param {function} cb - Async callback function.
+ */
+function browserifyTask(dev, cb) {
+  var bundleOpts = {
+    entries: ['./scripts/src/main.js'],
+    output: './scripts/main.min.js',
+    require: getModuleScripts(),
+    transform: [shim],
+    debug: true
+  };
+
   var b = browserify(bundleOpts);
 
-  // Require module scripts
-  b.require(themeModules());
+  var outputFile = path.basename(bundleOpts.output);
+
+  if(bundleOpts.require) {
+    b.require(bundleOpts.require);
+  }
 
   // Minify plugin w/ source map options
   b.plugin('minifyify', {
-    map: 'main.min.js.map',
-    output: './scripts/main.min.js.map',
+    map: outputFile+'.map',
+    output: bundleOpts.output+'.map',
     compressPath: function(p) {
       // Add relative path to project root
       return path.join('../', p);
     }
   });
 
+  // Re-usable function to start the bundle as configured
   function bundle() {
     bundleLogger.start('main.min.js');
 
@@ -44,14 +57,16 @@ function browserifyTask(watch, cb) {
       .on('end', function() {
         bundleLogger.end('main.min.js');
 
-        if(typeof cb !== 'undefined') {
+        if(cb) {
           cb();
+          cb = false; // Only trigger callback once
         }
       })
-      .pipe(fs.createWriteStream('./scripts/main.min.js'));
+      .pipe(fs.createWriteStream(bundleOpts.output));
   }
 
-  if(watch) {
+  // Use watchify for development mode
+  if(dev) {
     b = watchify(b);
     b.on('update', bundle);
   }
@@ -59,18 +74,24 @@ function browserifyTask(watch, cb) {
   return bundle();
 }
 
-// Returns an array of module scripts to require
-function themeModules() {
-  var moduleFiles = glob.sync('modules/**/*.js');
+/** 
+ * Provides an array of module scripts for browserify to include.
+ * Makes module scripts available to require as "modules/[name]".
+ */
+function getModuleScripts() {
+  var moduleFiles = glob.sync('./modules/**/*.js');
   var modules = [];
 
   for(var i = 0; i < moduleFiles.length; i++) {
     var name = path.basename(moduleFiles[i], '.js');
+    var dirname = path.basename(path.dirname(moduleFiles[i]));
 
-    modules.push({
-      file: './'+moduleFiles[i],
-      expose: 'modules/'+name
-    });
+    if(name === dirname) {
+      modules.push({
+        file: './'+moduleFiles[i],
+        expose: 'modules/'+name
+      });
+    }
   }
 
   return modules;
@@ -82,10 +103,11 @@ var gutil = require('gulp-util');
 var prettyHrtime = require('pretty-hrtime');
 var startTime;
 
+/** Some logging functions for Browserify, originally from gulp-starter. */
 var bundleLogger = {
   start: function(filepath) {
     startTime = process.hrtime();
-    gutil.log('Bundling', gutil.colors.green(filepath));
+    gutil.log('Bundling', gutil.colors.green(filepath), '...');
   },
 
   end: function(filepath) {

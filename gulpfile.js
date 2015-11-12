@@ -4,18 +4,24 @@ var livereload = require('gulp-livereload');
 require('./tasks/sass');
 require('./tasks/browserify');
 
-// Run 'gulp build' to compile once
+/**
+ * Defines the "build" task for Gulp.
+ */
 gulp.task('build', ['sass', 'browserify']);
 
-// Run 'gulp dev' for live-reloading
-gulp.task('dev', ['sass', 'watchify'], function() {
+/**
+ * Defines the default (development) task for Gulp.
+ */
+gulp.task('default', ['sass', 'watchify'], function() {
   livereload.listen();
 
+  // Watch stylesheets
   gulp.watch(['./**/*.scss'], ['sass']);
 
-  gulp.watch(['./styles/*.css'], function(event) {
+  // Watchify handles the scripts
+
+  // When compile tasks finish, trigger livereload
+  gulp.watch(['./styles/*.css', './scripts/*.js'], function(event) {
     livereload.changed(event.path);
   });
 });
-
-gulp.task('default', ['dev']);

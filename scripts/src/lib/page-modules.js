@@ -1,4 +1,4 @@
-/** Find all elements with a data-module attribute and call the corresponding module. */
+/** Find all elements with a data-module attribute and call the corresponding module, if it exists. */
 function PageModules() {
   var modules = document.querySelectorAll('[data-module]');
 
